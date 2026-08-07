@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // Set the theme before first paint so the page never flashes white.
+    (function () {
+      try {
+        var t = localStorage.getItem("kahrab-theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Privacy Policy — Kahrab</title>
+  <meta name="description" content="How Kahrab collects, uses and protects your data" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" href="../favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="alternate" hreflang="ar" href="https://kahrabapp.com/privacy.html" />
+  <link rel="alternate" hreflang="en" href="https://kahrabapp.com/en/privacy.html" />
+  <link rel="alternate" hreflang="x-default" href="https://kahrabapp.com/privacy.html" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <nav class="nav scrolled">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">
+          <img src="../favicon.png" alt="Kahrab" />
+        </span>
+        Kahrab
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-tools">
+        <a class="lang" href="../privacy.html" hreflang="ar" aria-label="العربية">AR</a>
+        <button class="icon-btn" id="themeBtn" type="button" aria-pressed="false" aria-label="Toggle dark mode">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-13.5a1 1 0 0 1 1 1V6a1 1 0 1 1-2 0V4.5a1 1 0 0 1 1-1Zm0 15a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1ZM3.5 12a1 1 0 0 1 1-1H6a1 1 0 1 1 0 2H4.5a1 1 0 0 1-1-1Zm14.5 0a1 1 0 0 1 1-1h1.5a1 1 0 1 1 0 2H19a1 1 0 0 1-1-1ZM5.6 5.6a1 1 0 0 1 1.4 0l1.1 1.1a1 1 0 0 1-1.4 1.4L5.6 7a1 1 0 0 1 0-1.4Zm10.3 10.3a1 1 0 0 1 1.4 0l1.1 1.1a1 1 0 0 1-1.4 1.4l-1.1-1.1a1 1 0 0 1 0-1.4Zm2.5-10.3a1 1 0 0 1 0 1.4L17.3 8.1a1 1 0 1 1-1.4-1.4L17 5.6a1 1 0 0 1 1.4 0ZM8.1 15.9a1 1 0 0 1 0 1.4L7 18.4A1 1 0 0 1 5.6 17l1.1-1.1a1 1 0 0 1 1.4 0Z"/></svg>
+        </button>
+        <a class="cta" href="index.html#download">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="legal page-pad">
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: 4 August 2026</div>
+
+    <p>
+      Your privacy matters to us. This policy explains how the Kahrab app ("the app", "we")
+      collects your data, and how it uses and protects it when you use the app or the
+      kahrabapp.com website.
+    </p>
+
+    <h2>1. Data we collect</h2>
+    <ul>
+      <li><strong>Account data:</strong> your email address (the basis of signing in), plus your name, phone number and city if you choose to add them to your profile.</li>
+      <li><strong>Content you publish:</strong> car listings and their photos, ratings and reviews, and charging stations you suggest adding to the map.</li>
+      <li><strong>Location:</strong> used to show charging stations near you on the map. If you switch on "nearby charger alerts" yourself, the app also uses your location in the background to notify you when you pass a charger, and you can turn it off at any time. In both cases the processing happens on your device: your location is never sent to our servers and we do not store it.</li>
+      <li><strong>Basic technical data:</strong> such as device type and crash logs, to improve the app's stability.</li>
+    </ul>
+
+    <h2>2. How we use your data</h2>
+    <ul>
+      <li>Running your account and signing you in via the verification code sent to your email.</li>
+      <li>Publishing your listings and showing them to users after review.</li>
+      <li>Sending notifications about your activity (listing status, a new rating, a favourite).</li>
+      <li>Improving the app and the overall experience.</li>
+    </ul>
+    <p>We do not sell your data to any third party, and we do not use it for external advertising.</p>
+
+    <h2>3. Passwordless sign-in</h2>
+    <p>
+      Kahrab stores no passwords. You sign in with a temporary verification code sent to your
+      email, or through your Google or Apple account. When you use those services we receive
+      only your email address and name from them, according to the sharing settings you approve
+      on their side.
+    </p>
+
+    <h2>4. Where data is stored</h2>
+    <p>
+      Our data is hosted with <a href="https://supabase.com" target="_blank" rel="noreferrer">Supabase</a>
+      on secured servers, encrypted in transit and at rest. Emails are sent through
+      <a href="https://resend.com" target="_blank" rel="noreferrer">Resend</a> from our official
+      kahrabapp.com domain.
+    </p>
+
+    <h2>5. Sharing data with others</h2>
+    <ul>
+      <li>Anything you publish publicly (a listing, a rating, an approved charger) is visible to app users along with your display name.</li>
+      <li>Your phone number appears only if you add it yourself, so buyers can reach you.</li>
+      <li>We may disclose limited data where the law requires it.</li>
+    </ul>
+
+    <h2>6. Your rights</h2>
+    <ul>
+      <li>Edit your profile data from inside the app at any time.</li>
+      <li>Delete your listings and your content.</li>
+      <li>Permanently delete your account and all of your data from inside the app (Profile → Delete account), or by contacting us, in which case we carry it out within 30 days at most.</li>
+      <li>Request a copy of the data we hold about you.</li>
+    </ul>
+
+    <h2>7. Children's data</h2>
+    <p>Kahrab is intended for people aged 18 and over, and we do not knowingly collect children's data.</p>
+
+    <h2>8. Changes to this policy</h2>
+    <p>
+      We may update this policy from time to time. Any material change will be published on this
+      page, with the "Last updated" date above revised accordingly.
+    </p>
+
+    <div class="note">
+      For any question about your privacy, or to request account deletion:
+      write to us through the <a href="contact.html">contact page</a> or directly at
+      <a href="mailto:info@kahrabapp.com">info@kahrabapp.com</a>
+      <br />
+      This English text is provided for convenience. In the event of any discrepancy, the
+      <a href="../privacy.html">Arabic version</a> prevails.
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="copy">© 2026 Kahrab — All rights reserved</div>
+    </div>
+  </footer>
+
+  <script src="../theme.js" defer></script>
+</body>
+</html>

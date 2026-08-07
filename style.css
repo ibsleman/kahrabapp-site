@@ -17,7 +17,61 @@
   --r-md: 16px;
   --shadow-card: 0 10px 40px rgba(13, 22, 31, 0.10);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Surfaces that were hard-coded white before dark mode existed. */
+  --surface: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --seg-bg: #eef0f2;
+  --seg-on: #ffffff;
+  /* Text/background pair for the solid-ink buttons (.btn-dark, contact CTA). */
+  --on-ink: #ffffff;
+  /* Deep teal used for links and labels on light backgrounds — needs to
+     lighten in dark mode or it fails contrast against the dark surface. */
+  --accent-deep: #0b8f77;
+  --badge-bg: #e3f8ef;
+  --badge-ink: #067a52;
+  --icon-bg: #e5faf5;
+  --note-bg: #e9faf5;
+  --note-border: #bdeee0;
+  --map-grad: linear-gradient(160deg, #eef1f3, #e2e7ea);
+  --map-dot: #c4cad1;
+  --map-dot-2: #ced3d9;
+  --map-road: #ffffff;
 }
+
+/* Dark theme — muted charcoal, same single accent, no glow.
+   Applied via data-theme so the choice survives reloads; the inline
+   head script sets it before first paint to avoid a white flash. */
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-soft: #151b23;
+  --ink: #e8edf3;
+  --ink-2: #d5dde6;
+  --muted: #9aa6b2;
+  --dim: #6e7b88;
+  --border: #232c36;
+  --dark-card: #10161d;
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.55);
+
+  --surface: #161d25;
+  --nav-bg: rgba(13, 17, 23, 0.82);
+  --seg-bg: #1b232c;
+  --seg-on: #2a3541;
+  --on-ink: #0d1117;
+  --accent-deep: #35d6b4;
+  --badge-bg: rgba(0, 201, 167, 0.14);
+  --badge-ink: #4fdcbb;
+  --icon-bg: rgba(0, 201, 167, 0.14);
+  --note-bg: rgba(0, 201, 167, 0.08);
+  --note-border: rgba(0, 201, 167, 0.22);
+  --map-grad: linear-gradient(160deg, #1a222b, #141b23);
+  --map-dot: #2f3a45;
+  --map-dot-2: #28323c;
+  --map-road: #202932;
+}
+
+html { color-scheme: light; }
+html[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -62,7 +116,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   position: fixed; inset-inline: 0; top: 0; z-index: 100;
   transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
   border-bottom: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(18px) saturate(1.5);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
 }
@@ -91,6 +145,35 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 .nav .cta:hover { transform: scale(1.04); filter: brightness(1.06); }
 
+/* ═══ Nav tools: theme toggle + language switch ═══ */
+.nav-tools { display: flex; align-items: center; gap: 10px; }
+.nav-tools .icon-btn {
+  width: 36px; height: 36px; border-radius: 999px;
+  display: grid; place-items: center;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.nav-tools .icon-btn:hover { color: var(--ink); border-color: var(--dim); background: var(--bg-soft); }
+.nav-tools .icon-btn svg { width: 17px; height: 17px; fill: currentColor; }
+/* One button, two glyphs: show the theme you would switch *to*. */
+.icon-btn .moon { display: block; }
+.icon-btn .sun { display: none; }
+:root[data-theme="dark"] .icon-btn .moon { display: none; }
+:root[data-theme="dark"] .icon-btn .sun { display: block; }
+.nav-tools .lang {
+  height: 36px; padding: 0 14px; border-radius: 999px;
+  display: grid; place-items: center;
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.4px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.nav-tools .lang:hover { color: var(--ink); border-color: var(--dim); background: var(--bg-soft); }
+@media (max-width: 420px) {
+  .nav-tools .cta { display: none; }
+}
+
 /* ═══ Buttons ═══ */
 .btn {
   display: inline-block;
@@ -101,7 +184,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .btn:hover { transform: scale(1.04); }
 .btn-primary { background: var(--primary); color: var(--primary-ink); }
 .btn-primary:hover { filter: brightness(1.06); }
-.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark { background: var(--ink); color: var(--on-ink); }
 .btn-outline-light { border: 1.5px solid rgba(255, 255, 255, 0.55); color: #fff; }
 .btn-outline-light:hover { background: rgba(255, 255, 255, 0.12); }
 
@@ -151,11 +234,11 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 .chip-card {
   position: absolute;
-  background: #fff;
+  background: var(--surface);
   border-radius: 18px;
   box-shadow: var(--shadow-card);
   padding: 16px 20px;
-  text-align: right;
+  text-align: start;
   animation: chipfloat 6s ease-in-out infinite;
 }
 @keyframes chipfloat { 50% { transform: translateY(-10px); } }
@@ -165,14 +248,14 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .chip-card .name { font-size: 13px; color: var(--muted); margin-top: 2px; }
 .chip-badge {
   display: inline-block; margin-top: 10px;
-  font-size: 11.5px; font-weight: 700; color: #067a52;
-  background: #e3f8ef;
+  font-size: 11.5px; font-weight: 700; color: var(--badge-ink);
+  background: var(--badge-bg);
   padding: 4px 12px; border-radius: 999px;
 }
 .chip-card .row { display: flex; align-items: center; gap: 10px; }
 .chip-card .ico {
   width: 40px; height: 40px; border-radius: 12px;
-  background: #e5faf5; color: var(--primary);
+  background: var(--icon-bg); color: var(--primary);
   display: grid; place-items: center; font-size: 19px;
 }
 .chip-card .t1 { font-size: 14px; font-weight: 700; line-height: 1.5; }
@@ -195,7 +278,7 @@ section.block.soft { background: var(--bg-soft); }
 /* ═══ Segmented tabs ═══ */
 .seg {
   display: flex; gap: 4px;
-  background: #eef0f2;
+  background: var(--seg-bg);
   border-radius: 999px;
   padding: 5px;
   width: max-content;
@@ -208,7 +291,7 @@ section.block.soft { background: var(--bg-soft); }
   transition: color 0.25s, background 0.25s, box-shadow 0.25s;
 }
 .seg button.on {
-  background: #fff; color: var(--ink); font-weight: 700;
+  background: var(--seg-on); color: var(--ink); font-weight: 700;
   box-shadow: 0 3px 12px rgba(13, 22, 31, 0.10);
 }
 
@@ -239,18 +322,18 @@ section.block.soft { background: var(--bg-soft); }
 .mapviz {
   position: absolute; inset: 0;
   background:
-    radial-gradient(2.5px 2.5px at 22% 28%, #c4cad1, transparent),
-    radial-gradient(2px 2px at 64% 18%, #ced3d9, transparent),
-    radial-gradient(2.5px 2.5px at 44% 62%, #c4cad1, transparent),
-    radial-gradient(2px 2px at 82% 52%, #ced3d9, transparent),
-    radial-gradient(2px 2px at 30% 80%, #ced3d9, transparent),
-    linear-gradient(160deg, #eef1f3, #e2e7ea);
+    radial-gradient(2.5px 2.5px at 22% 28%, var(--map-dot), transparent),
+    radial-gradient(2px 2px at 64% 18%, var(--map-dot-2), transparent),
+    radial-gradient(2.5px 2.5px at 44% 62%, var(--map-dot), transparent),
+    radial-gradient(2px 2px at 82% 52%, var(--map-dot-2), transparent),
+    radial-gradient(2px 2px at 30% 80%, var(--map-dot-2), transparent),
+    var(--map-grad);
 }
 .mapviz .road {
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, transparent 48.5%, #fff 48.5%, #fff 51.5%, transparent 51.5%),
-    linear-gradient(0deg, transparent 63%, #fff 63%, #fff 66%, transparent 66%);
+    linear-gradient(90deg, transparent 48.5%, var(--map-road) 48.5%, var(--map-road) 51.5%, transparent 51.5%),
+    linear-gradient(0deg, transparent 63%, var(--map-road) 63%, var(--map-road) 66%, transparent 66%);
   opacity: 0.85;
 }
 .pin {
@@ -302,7 +385,7 @@ section.block.soft { background: var(--bg-soft); }
 .sol.dark li b { color: #fff; }
 
 .sol.light { background: var(--bg-soft); }
-.sol.light .tag { color: #0b8f77; }
+.sol.light .tag { color: var(--accent-deep); }
 .sol.light li { color: var(--muted); }
 .sol.light li b { color: var(--ink); }
 
@@ -323,8 +406,14 @@ section.block.soft { background: var(--bg-soft); }
 }
 .sol.light .sol-fade { background: linear-gradient(180deg, transparent 55%, var(--bg-soft) 96%); }
 
-/* mini app UI inside the shot */
+/* mini app UI inside the shot.
+   This is a picture of the app's own light UI, so it must stay light in both
+   themes — pin the inherited tokens instead of hard-coding every child. */
 .mini-app {
+  --ink: #0d161f;
+  --muted: #5c6670;
+  --dim: #98a1ab;
+  --border: #e6e8ec;
   background: #fff; color: var(--ink);
   padding: 20px 18px 26px;
   font-size: 12px;
@@ -387,16 +476,18 @@ section.block.soft { background: var(--bg-soft); }
 .store-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .store-btn {
   display: flex; align-items: center; gap: 13px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   padding: 13px 26px; border-radius: 16px;
-  min-width: 200px; text-align: right;
+  min-width: 200px; text-align: start;
   transition: transform 0.3s var(--ease), box-shadow 0.3s;
 }
 .store-btn:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
 .store-btn svg { width: 30px; height: 30px; flex-shrink: 0; }
 .store-btn .small { font-size: 11px; color: var(--muted); line-height: 1.4; }
 .store-btn .big { font-size: 17.5px; font-weight: 700; line-height: 1.4; }
+.store-btn.soon { opacity: 0.5; cursor: default; }
+.store-btn.soon:hover { transform: none; box-shadow: none; }
 .store-note { margin-top: 26px; color: var(--dim); font-size: 13.5px; }
 .store-note a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 
@@ -460,11 +551,11 @@ body > footer:not(.footer-hero) {
 .legal ul { padding-inline-start: 22px; margin: 12px 0; }
 .legal li { margin-bottom: 8px; }
 .legal .note {
-  background: #e9faf5; border: 1px solid #bdeee0;
+  background: var(--note-bg); border: 1px solid var(--note-border);
   border-radius: 16px; padding: 18px 22px; margin-top: 40px; font-size: 14.5px;
   color: var(--ink);
 }
-.legal a { color: #0b8f77; font-weight: 600; }
+.legal a { color: var(--accent-deep); font-weight: 600; }
 
 .contact-cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 40px; }
 .contact-card {
@@ -477,7 +568,7 @@ body > footer:not(.footer-hero) {
 .contact-card h3 { font-size: 16.5px; font-weight: 800; margin-bottom: 8px; }
 .contact-card p { font-size: 13.5px; color: var(--muted) !important; margin-bottom: 16px; }
 .contact-card a {
-  display: inline-block; background: var(--ink); color: #fff;
+  display: inline-block; background: var(--ink); color: var(--on-ink);
   padding: 9px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
   transition: background 0.3s, transform 0.3s;
 }

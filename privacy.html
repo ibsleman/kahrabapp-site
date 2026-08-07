@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // Set the theme before first paint so the page never flashes white.
+    (function () {
+      try {
+        var t = localStorage.getItem("kahrab-theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>سياسة الخصوصية — كهرب</title>
   <meta name="description" content="سياسة الخصوصية لتطبيق كهرب" />
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -10,6 +20,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="alternate" hreflang="ar" href="https://kahrabapp.com/privacy.html" />
+  <link rel="alternate" hreflang="en" href="https://kahrabapp.com/en/privacy.html" />
+  <link rel="alternate" hreflang="x-default" href="https://kahrabapp.com/privacy.html" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -27,13 +40,20 @@
         <a href="terms.html">شروط الاستخدام</a>
         <a href="contact.html">اتصل بنا</a>
       </div>
-      <a class="cta" href="index.html#download">حمّل التطبيق</a>
+      <div class="nav-tools">
+        <a class="lang" href="en/privacy.html" hreflang="en" aria-label="English">EN</a>
+        <button class="icon-btn" id="themeBtn" type="button" aria-pressed="false" aria-label="تبديل الوضع الداكن">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-13.5a1 1 0 0 1 1 1V6a1 1 0 1 1-2 0V4.5a1 1 0 0 1 1-1Zm0 15a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1ZM3.5 12a1 1 0 0 1 1-1H6a1 1 0 1 1 0 2H4.5a1 1 0 0 1-1-1Zm14.5 0a1 1 0 0 1 1-1h1.5a1 1 0 1 1 0 2H19a1 1 0 0 1-1-1ZM5.6 5.6a1 1 0 0 1 1.4 0l1.1 1.1a1 1 0 0 1-1.4 1.4L5.6 7a1 1 0 0 1 0-1.4Zm10.3 10.3a1 1 0 0 1 1.4 0l1.1 1.1a1 1 0 0 1-1.4 1.4l-1.1-1.1a1 1 0 0 1 0-1.4Zm2.5-10.3a1 1 0 0 1 0 1.4L17.3 8.1a1 1 0 1 1-1.4-1.4L17 5.6a1 1 0 0 1 1.4 0ZM8.1 15.9a1 1 0 0 1 0 1.4L7 18.4A1 1 0 0 1 5.6 17l1.1-1.1a1 1 0 0 1 1.4 0Z"/></svg>
+        </button>
+        <a class="cta" href="index.html#download">حمّل التطبيق</a>
+      </div>
     </div>
   </nav>
 
   <main class="legal page-pad">
     <h1>سياسة الخصوصية</h1>
-    <div class="updated">آخر تحديث: 17 يوليو 2026</div>
+    <div class="updated">آخر تحديث: 4 أغسطس 2026</div>
 
     <p>
       خصوصيتك تهمنا. توضح هذه السياسة كيف يجمع تطبيق «كهرب» («التطبيق»، «نحن») بياناتك
@@ -44,7 +64,7 @@
     <ul>
       <li><strong>بيانات الحساب:</strong> بريدك الإلكتروني (وهو أساس تسجيل الدخول)، والاسم ورقم الهاتف والمدينة إن اخترت إضافتها لملفك.</li>
       <li><strong>محتوى تنشره:</strong> إعلانات السيارات وصورها، التقييمات والمراجعات، ومحطات الشحن التي تقترح إضافتها للخريطة.</li>
-      <li><strong>الموقع الجغرافي:</strong> يُستخدم فقط لعرض محطات الشحن القريبة منك على الخريطة، ولا يُجمع في الخلفية ولا يُخزن لدينا.</li>
+      <li><strong>الموقع الجغرافي:</strong> يُستخدم لعرض محطات الشحن القريبة منك على الخريطة. وإذا فعّلت بنفسك «تنبيهات الشواحن القريبة»، يستخدم التطبيق موقعك في الخلفية ليُنبهك عند مرورك قرب شاحن، وتقدر توقفه في أي وقت. في الحالتين تتم المعالجة على جهازك، ولا يُرسل موقعك إلى خوادمنا ولا يُخزن لدينا.</li>
       <li><strong>بيانات تقنية أساسية:</strong> مثل نوع الجهاز وسجلات الأخطاء، لتحسين استقرار التطبيق.</li>
     </ul>
 
@@ -82,7 +102,7 @@
     <ul>
       <li>تعديل بيانات ملفك الشخصي من داخل التطبيق في أي وقت.</li>
       <li>حذف إعلاناتك ومحتواك.</li>
-      <li>طلب حذف حسابك وبياناتك نهائياً عبر التواصل معنا — ننفذه خلال 30 يوماً كحد أقصى.</li>
+      <li>حذف حسابك وكل بياناتك نهائياً من داخل التطبيق مباشرة (الملف الشخصي ← حذف الحساب)، أو عبر التواصل معنا وننفذه خلال 30 يوماً كحد أقصى.</li>
       <li>طلب نسخة من بياناتك المخزنة لدينا.</li>
     </ul>
 
@@ -114,5 +134,6 @@
     </div>
   </footer>
 
+  <script src="theme.js" defer></script>
 </body>
 </html>
